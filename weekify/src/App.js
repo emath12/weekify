@@ -48,24 +48,23 @@ function App() {
 
         <div className = "days">
           <div className = "day" style={{backgroundColor: "rgb(204, 219, 220, 0.5)"}}>
-             <monday>Hello</monday>
-             <monday>Hello</monday>
+            <div> <Monday/></div>
            </div>
 
           <div className = "day" style={{backgroundColor: "rgb(154, 209, 212,0.5)"}}>
-            <tuesday>Hello</tuesday>
+            <div> <Tuesday/></div>
            </div>
 
           <div className = "day" style={{backgroundColor: "rgb(128, 206, 215, 0.5)"}}>
-            <wednesday>Hello</wednesday>
+            <div> <Wednesday/></div>
           </div>
 
           <div className = "day" style={{backgroundColor: "rgb(0, 126, 167, 0.5)"}}>
-            <thursday>Hello</thursday>
+            <div> <Thursday/></div>
            </div>
 
           <div className = "day" style={{backgroundColor: "rgb(36, 98, 127, 0.5)"}}>
-            <friday>Hello</friday>
+            <div> <Friday/></div>
           </div>
         </div>
       </div>
