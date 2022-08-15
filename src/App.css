@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  
+
 }
 
 .App-logo {
@@ -98,7 +98,7 @@ hr {
 
 .days .day {
   display:grid;
-  grid-template-rows: repeat(24, 1fr) ;
+  grid-template-rows: repeat(23, 1fr) ;
   grid-template-columns: 1fr;
   justify-content: center;
   border-radius: 10px;
@@ -107,7 +107,8 @@ hr {
 
 
 .day monday {
-  height: 88%;
+  padding: 1px;
+  height: 99.5%;
   width: 96%;
   grid-row: 0/1;
   grid-column: 0/1;
@@ -121,9 +122,9 @@ hr {
 }
 
 .day tuesday {
-  height: 88%;
+  height: 100%;
   width: 96%;
-  grid-row: 3/4;
+  grid-row: 0/1;
   grid-column: 0/1;
   border-radius: 10px;
   background-color: rgb(154, 209, 212, 1);
@@ -134,9 +135,9 @@ hr {
 }
 
 .day wednesday {
-  height: 88%;
+  height: 100%;
   width: 96%;
-  grid-row: 3/4;
+  grid-row: 0/1;
   grid-column: 0/1;
   border-radius: 10px;
   background-color: rgb(128, 206, 215, 1);
@@ -147,9 +148,9 @@ hr {
 }
 
 .day thursday {
-  height: 88%;
+  height: 100%;
   width: 96%;
-  grid-row: 3/4;
+  grid-row: 0/1;
   grid-column: 0/1;
   border-radius: 10px;
   background-color: rgb(0, 126, 167, 1);
@@ -160,9 +161,9 @@ hr {
 }
 
 .day friday {
-  height: 88%;
+  height: 100%;
   width: 96%;
-  grid-row: 3/4;
+  grid-row: 0/1;
   grid-column: 0/1;
   border-radius: 10px;
   background-color: rgb(36, 98, 127);
@@ -174,47 +175,60 @@ hr {
 
 
 .formPackage {
-  height: 30rem;
+  height: 15rem;
   display: grid;
   grid-template-columns: 20% 1fr 20%;
   grid-template-rows: 1fr 1fr 1fr;
-  background-color: rgb(36, 98, 127, 0.5);
+  background-color: rgb(204, 219, 220, 0.5);
+  padding: 20px;
 }
 
-.Form {
-  padding: 10px;
-
+.thisform{
+  height: 15rem;
+  text-align: center;
+  grid-column: 2/3;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
-.center {
-  border: 5px solid black;
-  padding: 10px;
-
-}
 
 .form-group {
-  padding: 0px;
-}
-
-.form-group p{
-  color: rgb(0, 50, 73, 1);
-  font-size: 1.5rem;
+  padding: 3px;
 }
 
 .data-get {
-  grid-column: 2/3;
-  width: 98%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(128, 206, 215, 0.25);
+  width: 100%;
   padding: 10px;
   color: rgb(0, 126, 167);
   font-weight: bold;
+  text-align: center;
+  font-size: 1rem;
+  border-radius: 10px;
+  border-width: 1px;
 
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.data-get .placeholder {
   color: rgb(0, 126, 167, 0.75);
   font-weight: normal;
   opacity: 1;
   font-style: italic;
+  font-size: 1rem;
+}
+
+::placeholder {
+  color: rgb(0, 126, 167, 0.75);
+  font-weight: normal;
+  opacity: 1;
+  font-style: italic;
+  font-size: 1rem;
 
 }
 
@@ -229,6 +243,7 @@ hr {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .cal-item {
