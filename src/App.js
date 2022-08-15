@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import logo from "./Refresh.png"
 // import "./debug.css";
 import ReactDOM from 'react-dom/client';
 
@@ -122,7 +123,10 @@ class App extends React.Component {
       return (
         <div className="App">
           <div className = "App-header">
-            <h1> Weekify</h1>
+            <h1> Weekify
+              <img src={logo} style = {{width: "30px", filter:"brightness(0) invert(1) "}}/>
+            </h1>
+
           </div>
 
           <div className = "Calendar">
