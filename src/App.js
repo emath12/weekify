@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
 import logo from "./Refresh.png"
-// import "./debug.css";
-import ReactDOM from 'react-dom/client';
 
 
 var dict = {
@@ -40,6 +38,8 @@ var dict = {
 
 
 class App extends React.Component {
+
+
     constructor(props) {
       super(props);
       this.state = {
@@ -86,13 +86,62 @@ class App extends React.Component {
       }
 
     }
+  
+    resetCal = () => {
+      var initial_state = {
+        monday : [
+          {
+            day: '',
+            start_time: '',
+            end_time: '',
+            task: ''
+          }
+        ],
+        tuesday : [
+          {
+            day: '',
+            start_time: '',
+            end_time: '',
+            task: ''
+          }
+        ],
+        wednesday : [
+          {
+            day: '',
+            start_time: '',
+            end_time: '',
+            task: ''
+          }
+        ],
+        thursday : [
+          {
+            day: '',
+            start_time: '',
+            end_time: '',
+            task: ''
+          }
+        ],
+        friday : [
+          {
+            day: '',
+            start_time: '',
+            end_time: '',
+            task: ''
+          }
+        ]
+      }
+  
+      this.setState(
+        initial_state
+      );
+      
+  }
 
   onSubmit = event => {
     var pick;
     event.preventDefault();
     if (this.day.value == "Monday") {
       pick = this.state.monday;
-      console.log("made it!");
     } else if (this.day.value == "Tuesday") {
       pick = this.state.tuesday;
     } else if (this.day.value == "Wednesday")  {
@@ -111,20 +160,20 @@ class App extends React.Component {
     const info = {day: day, start_time: start_time, end_time: end_time, task: task};
     const data = pick.push(info);
 
-    console.log(data);
-
     this.setState({
       pick: data
     })
 
    };
 
+   
+
   render() {
       return (
         <div className="App">
           <div className = "App-header">
             <h1> Weekify
-              <img src={logo} style = {{width: "30px", filter:"brightness(0) invert(1) "}}/>
+              <img src={logo} onClick={this.resetCal} style = {{width: "30px", filter:"brightness(0) invert(1) "}}/>
             </h1>
 
           </div>
@@ -169,8 +218,7 @@ class App extends React.Component {
             <div className = "days">
               <div className = "day" style={{backgroundColor: "rgb(204, 219, 220, 0.5)"}}>
                   {
-                    this.state.monday.map((info, index) => {
-                      console.log("info when passed: " + info.day);
+                    this.state.monday.map((info) => {
                       if((info.day !== '') && (info.task !== '') && (info.start_time !== '') && (info.end_time !== '')) {
                           return (
                             <monday style={{gridRow: "" +  dict[info.start_time] + "/" + dict[info.end_time]}}>
@@ -186,7 +234,7 @@ class App extends React.Component {
               <div className = "day" style={{backgroundColor: "rgb(154, 209, 212,0.5)"}}>
                     {
 
-                      this.state.tuesday.map((info, index) => {
+                      this.state.tuesday.map((info) => {
 
                         if((info.day !== '') && (info.task !== '') && (info.start_time !== '') && (info.end_time !== '')) {
                             return (
@@ -205,10 +253,12 @@ class App extends React.Component {
 
               <div className = "day" style={{backgroundColor: "rgb(128, 206, 215, 0.5)"}}>
                       {
-                        this.state.wednesday.map((info, index) => {
+                        this.state.wednesday.map((info) => {
                           if((info.day !== '') && (info.task !== '') && (info.start_time !== '') && (info.end_time !== '')) {
                               return (
                                 <wednesday style={{gridRow: "" +  dict[info.start_time] + "/" + dict[info.end_time]}}>
+                                  {info.start_time} - {info.end_time}
+                                  <br></br>
                                   {info.task}
                                 </wednesday>
                               )
@@ -220,7 +270,7 @@ class App extends React.Component {
 
               <div className = "day" style={{backgroundColor: "rgb(0, 126, 167, 0.5)"}}>
                 {
-                      this.state.thursday.map((info, index) => {
+                      this.state.thursday.map((info) => {
                         if((info.day !== '') && (info.task !== '') && (info.start_time !== '') && (info.end_time !== '')) {
                             return (
                               <thursday style={{gridRow: "" +  dict[info.start_time] + "/" + dict[info.end_time]}}>
@@ -236,9 +286,8 @@ class App extends React.Component {
 
               <div className = "day" style={{backgroundColor: "rgb(36, 98, 127, 0.5)"}}>
                 {
-                    this.state.friday.map((info, index) => {
+                    this.state.friday.map((info) => {
                       if((info.day !== '') && (info.task !== '') && (info.start_time !== '') && (info.end_time !== '')) {
-                          console.log("dict test:" + dict[info.start_time]);
                           return (
                             <friday style={{gridRow: "" +  dict[info.start_time] + "/" + dict[info.end_time]}}>
                               {info.task}
@@ -255,6 +304,8 @@ class App extends React.Component {
 
           <div className="formPackage">
             <form onSubmit={this.onSubmit} style={{gridColumn: "2/3"}}>
+      
+
               <div className = "thisform">
                 <div className = "form-group" style={{gridRow: "1/2", gridColumn: "1/3"}}>
                   <select className = "data-get" id="weekdays" name="days" ref={input => this.day = input}>
@@ -269,70 +320,72 @@ class App extends React.Component {
                 <div className = "form-group" style={{gridRow: "2/3", gridColumn: "1/2"}}>
                     <select  className = "data-get" id="weekdays" name="days"  style={{width: "1fr"}} ref={input => this.start_time = input}>
                       <option value="selectcard">--- Start ---</option>
-                      <option value="8:00AM">8:00AM</option>
-                      <option value="8:30AM">8:30AM</option>
-                      <option value="9:00AM">9:00AM</option>
-                      <option value="9:30AM">9:30AM</option>
-                      <option value="10:00AM">10:00AM</option>
-                      <option value="10:30AM">10:30AM</option>
-                      <option value="11:00AM">11:00AM</option>
-                      <option value="11:30AM">11:30AM</option>
-                      <option value="12:00PM">12:00PM</option>
-                      <option value="12:30PM">12:30PM</option>
-                      <option value="1:00PM">1:00PM</option>
-                      <option value="1:30PM">1:30PM</option>
-                      <option value="2:00PM">2:00PM</option>
-                      <option value="2:30PM">2:30PM</option>
-                      <option value="3:00PM">3:00PM</option>
-                      <option value="3:30PM">3:30PM</option>
-                      <option value="4:00PM">4:00PM</option>
-                      <option value="4:30PM">4:30PM</option>
-                      <option value="5:00PM">5:00PM</option>
-                      <option value="5:30PM">5:30PM</option>
-                      <option value="6:00PM">6:00PM</option>
-                      <option value="6:30PM">6:30PM</option>
-                      <option value="7:00PM">7:00PM</option>
-                      <option value="7:30PM">7:30PM</option>
-                      <option value="8:00PM">8:00PM</option>
+                      <option id="1" value="8:00AM">8:00AM</option>
+                      <option id="2" value="8:30AM">8:30AM</option>
+                      <option id="3 "value="9:00AM">9:00AM</option>
+                      <option id="4" value="9:30AM">9:30AM</option>
+                      <option id="5" value="10:00AM">10:00AM</option>
+                      <option id="6" value="10:30AM">10:30AM</option>
+                      <option id="7" value="11:00AM">11:00AM</option>
+                      <option id="8" value="11:30AM">11:30AM</option>
+                      <option id="9" value="12:00PM">12:00PM</option>
+                      <option id="10" value="12:30PM">12:30PM</option>
+                      <option id="11" value="1:00PM">1:00PM</option>
+                      <option id="12" value="1:30PM">1:30PM</option>
+                      <option id="13" value="2:00PM">2:00PM</option>
+                      <option id="14" value="2:30PM">2:30PM</option>
+                      <option id="15" value="3:00PM">3:00PM</option>
+                      <option id="16" value="3:30PM">3:30PM</option>
+                      <option id="17" value="4:00PM">4:00PM</option>
+                      <option id="18" value="4:30PM">4:30PM</option>
+                      <option id="19" value="5:00PM">5:00PM</option>
+                      <option id="20" value="5:30PM">5:30PM</option>
+                      <option id="21" value="6:00PM">6:00PM</option>
+                      <option id="22" value="6:30PM">6:30PM</option>
+                      <option id="23" value="7:00PM">7:00PM</option>
+                      <option id="24" value="7:30PM">7:30PM</option>
+                      <option id="25" value="8:00PM">8:00PM</option>
                     </select>
                   </div>
                   <div className = "form-group" style={{gridRow: "2/3", gridColumn: "2/3"}}>
                     <select  className = "data-get" id="weekdays" name="days" ref={input => this.end_time = input} style={{width: "1fr"}}>
                       <option className = "placeholder" value="selectcard">--- End ---</option>
-                      <option value="8:00AM">8:00AM</option>
-                      <option value="8:30AM">8:30AM</option>
-                      <option value="9:00AM">9:00AM</option>
-                      <option value="9:30AM">9:30AM</option>
-                      <option value="10:00AM">10:00AM</option>
-                      <option value="10:30AM">10:30AM</option>
-                      <option value="11:00AM">11:00AM</option>
-                      <option value="11:30AM">11:30AM</option>
-                      <option value="12:00PM">12:00PM</option>
-                      <option value="12:30PM">12:30PM</option>
-                      <option value="1:00PM">1:00PM</option>
-                      <option value="1:30PM">1:30PM</option>
-                      <option value="2:00PM">2:00PM</option>
-                      <option value="2:30PM">2:30PM</option>
-                      <option value="3:00PM">3:00PM</option>
-                      <option value="3:30PM">3:30PM</option>
-                      <option value="4:00PM">4:00PM</option>
-                      <option value="4:30PM">4:30PM</option>
-                      <option value="5:00PM">5:00PM</option>
-                      <option value="5:30PM">5:30PM</option>
-                      <option value="6:00PM">6:00PM</option>
-                      <option value="6:30PM">6:30PM</option>
-                      <option value="7:00PM">7:00PM</option>
-                      <option value="7:30PM">7:30PM</option>
-                      <option value="8:00PM">8:00PM</option>
+                      <option id="26" value="8:00AM">8:00AM</option>
+                      <option id="27" value="8:30AM">8:30AM</option>
+                      <option id="28" value="9:00AM">9:00AM</option>
+                      <option id="29" value="9:30AM">9:30AM</option>
+                      <option id="30" value="10:00AM">10:00AM</option>
+                      <option id="31" value="10:30AM">10:30AM</option>
+                      <option id="32" value="11:00AM">11:00AM</option>
+                      <option id="33" value="11:30AM">11:30AM</option>
+                      <option id="34" value="12:00PM">12:00PM</option>
+                      <option id="35" value="12:30PM">12:30PM</option>
+                      <option id="36" value="1:00PM">1:00PM</option>
+                      <option id="37" value="1:30PM">1:30PM</option>
+                      <option id="38" value="2:00PM">2:00PM</option>
+                      <option id="39" value="2:30PM">2:30PM</option>
+                      <option id="40" value="3:00PM">3:00PM</option>
+                      <option id="41" value="3:30PM">3:30PM</option>
+                      <option id="42" value="4:00PM">4:00PM</option>
+                      <option id="43" value="4:30PM">4:30PM</option>
+                      <option id="44" value="5:00PM">5:00PM</option>
+                      <option id="45"  value="5:30PM">5:30PM</option>
+                      <option id="46" value="6:00PM">6:00PM</option>
+                      <option id="47" value="6:30PM">6:30PM</option>
+                      <option id="48" value="7:00PM">7:00PM</option>
+                      <option id="49" value="7:30PM">7:30PM</option>
+                      <option id="50" value="8:00PM">8:00PM</option>
                     </select>
                   </div>
                   <div className = "form-group" style={{gridRow: "3/4", gridColumn: "1/3", width: "97%"}}>
-                    <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                    <div>
                       <input
                         type="text"
                         className="data-get"
                         placeholder="Task"
-                        ref={input => this.task = input}/>
+                        ref={input => this.task = input}
+                        maxLength="30"
+                        />   
                       </div>
                   </div>
 
@@ -353,18 +406,4 @@ class App extends React.Component {
       );
   }
 }
-
-const Card = props =>
-  <div className="Calender">
-    <div className="card">
-      <div className="card mb-3">
-        <div className="card-body">
-          <p className="card-text">
-            {props.info.task}
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>;
-
 export default App;

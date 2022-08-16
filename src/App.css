@@ -118,6 +118,8 @@ hr {
   border-color: rgb(0, 50, 73, 1);
   border-left-width: 6px;
   border-left-color: rgb(0, 50, 73, 1);
+  max-width:200px;
+  word-wrap:break-word;
 
 }
 
