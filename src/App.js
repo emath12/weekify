@@ -87,7 +87,7 @@ class App extends React.Component {
 
     }
   
-    resetCal = () => {
+    handleClick = () => {
       var initial_state = {
         monday : [
           {
@@ -173,7 +173,7 @@ class App extends React.Component {
         <div className="App">
           <div className = "App-header">
             <h1> Weekify
-              <img src={logo} onClick={this.resetCal} style = {{width: "30px", filter:"brightness(0) invert(1) "}}/>
+              <img src={logo} onClick={this.handleClick} style = {{width: "30px", filter:"brightness(0) invert(1) "}}/>
             </h1>
 
           </div>
@@ -397,7 +397,7 @@ class App extends React.Component {
                       </button>
                   </div>
 
-                  <div style={{gridColumn: "1/3", gridRow: "5/6", opacity: "0.5"}}> By: Taimur Moolji and Ethan Matheiu </div>
+                  <div style={{gridColumn: "1/3", gridRow: "5/6", opacity: "0.5"}}> By: Ethan Mathieu and Taimur Mooji </div>
                 </div>
 
               </form>
